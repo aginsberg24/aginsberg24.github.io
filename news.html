@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HelpHub - Latest Charity News</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .news-card {
+        background: linear-gradient(to right, #b0e1c3, #8ac99b);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+    .news-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black
+    }
+    .news-description {
+      font-size: 14px;
+      color: #000000;
+    }
+    #loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 50px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #loading-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">HelpHub</a>
+        <ul>
+            <li><a href="charities.html">Charities List</a></li>
+            <li><a href="profiles.html">Charities Profile Page</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    </nav>
+
+  <h1>Latest Charity & Volunteering News</h1>
+
+  <div id="loading-wrapper">
+    <div id="loader"></div>
+  </div>
+
+  <div id="news-container" style="display:none;">
+  </div>
+
+  <script>
+    const apiKey = 'pub_83289b2cd9f1e7cfcb05968bb42543948aa2c'; 
+    const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=charity&language=en`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const articles = data.results;
+        const container = document.getElementById('news-container');
+        const loaderWrapper = document.getElementById('loading-wrapper');
+
+        loaderWrapper.style.display = 'none';
+        container.style.display = 'grid';
+
+        if (!articles.length) {
+          container.innerHTML = "<p>No news available right now.</p>";
+          return;
+        }
+
+        articles.forEach(article => {
+          const card = document.createElement('div');
+          card.className = 'news-card';
+          card.innerHTML = `
+            <div class="news-title">${article.title}</div>
+            <div class="news-description">${article.description || 'No description available.'}</div>
+            <a href="${article.link}" target="_blank">Read more</a>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching news:', error);
+        document.getElementById('loading-wrapper').style.display = 'none';
+        document.getElementById('news-container').innerHTML = "<p>Failed to load news. Please try again later.</p>";
+        document.getElementById('news-container').style.display = 'block';
+      });
+  </script>
+
+</body>
+</html>
