@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".charity-card");
     cards.forEach(card => {
       card.addEventListener("mouseenter", () => {
-        card.style.backgroundColor = "#f0f8ff";
+        card.style.backgroundColor = "white";
       });
       card.addEventListener("mouseleave", () => {
-        card.style.backgroundColor = "white";
+        card.style.backgroundColor = "#8ac99b";
       });
     });
   
