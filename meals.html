@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meal Tracker | Athlete Advocate</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Athlete Performance Tracker</h1>
+    <nav>
+      <a href="index.html" class="logo">Athlete Advocate</a>
+      <ul>
+        <li><a href="workouts.html">Workouts</a></li>
+        <li><a href="meals.html" class="active">Meal Tracker</a></li>
+        <li><a href="planner.html">Planner</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- MEAL LOGGING -->
+    <section class="tracker-section">
+      <h2>Meal Logger</h2>
+      <form id="meal-form" class="meal-form">
+        <div class="meal-name-wrapper">
+          <input type="text" id="meal-name" placeholder="Meal name (e.g., Chicken & Rice)" required />
+          <button type="button" id="search-food" class="btn-small inline-btn">Search</button>
+        </div>
+        <ul id="search-results" class="results-list"></ul>
+
+        <div class="macro-inputs">
+          <div class="macro-field">
+            <label for="meal-calories">Calories</label>
+            <input type="number" id="meal-calories" placeholder="0 kcal" />
+          </div>
+          <div class="macro-field">
+            <label for="meal-protein">Protein</label>
+            <input type="number" id="meal-protein" placeholder="0 g" />
+          </div>
+          <div class="macro-field">
+            <label for="meal-carbs">Carbs</label>
+            <input type="number" id="meal-carbs" placeholder="0 g" />
+          </div>
+          <div class="macro-field">
+            <label for="meal-fat">Fat</label>
+            <input type="number" id="meal-fat" placeholder="0 g" />
+          </div>
+        </div>
+
+        <input type="date" id="meal-date" />
+        <button type="submit" class="btn">Add Meal</button>
+      </form>
+    </section>
+
+    <!-- CHART SECTION -->
+    <section class="chart-section">
+      <h2>Daily Calorie Intake</h2>
+      <canvas id="mealChart"></canvas>
+      <div class="filter-container">
+        <label for="filter-date">Filter by Date:</label>
+        <input type="date" id="filter-date" />
+      </div>
+    </section>
+
+    <!-- MEAL HISTORY -->
+    <section class="table-section">
+      <h2>Meals History</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Meal</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="meal-entries"></tbody>
+      </table>
+      <button id="clear-meals" class="btn danger">Clear All Meals</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Athlete Advocate | Designed for Peak Performance</p>
+  </footer>
+
+  <script src="meals.js"></script>
+</body>
+</html>

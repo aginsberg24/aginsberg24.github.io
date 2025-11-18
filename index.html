@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athlete Advocate | Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Athlete Performance Tracker</h1>
+    <nav>
+      <a href="index.html" class="active">Athlete Advocate</a>
+      <ul>
+        <li><a href="workouts.html">Workouts</a></li>
+        <li><a href="meals.html">Meal Tracker</a></li>
+        <li><a href="planner.html">Planner</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="home-container">
+    <section class="overview">
+      <h2>Weekly Overview</h2>
+      <p>
+        View your progress across workouts, meals, and planned habits for the week.
+      </p>
+    </section>
+
+    <section class="charts-grid">
+      <div class="chart-card">
+        <h3>Workout Performance</h3>
+        <canvas id="workoutOverviewChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Caloric Intake</h3>
+        <canvas id="mealOverviewChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Weekly Habits</h3>
+        <canvas id="habitsOverviewChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="home.js"></script>
+</body>
+</html>
